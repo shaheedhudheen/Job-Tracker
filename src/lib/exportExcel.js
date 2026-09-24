@@ -1,4 +1,5 @@
 import * as xlsx from 'xlsx'
+import { formatDate, formatDateTime } from './dateUtils'
 
 export const exportToExcel = (jobs) => {
   const formattedJobs = jobs.map((job, index) => ({
@@ -6,7 +7,7 @@ export const exportToExcel = (jobs) => {
     'Job Role': job.job_role,
     'Company': job.company,
     'Location': job.location,
-    'Applied Date': job.applied_date,
+    'Applied Date': job.applied_date ? formatDate(job.applied_date) : '',
     'Platform': job.platform,
     'Status': job.status,
     'Contact Info': job.contact_info,
@@ -14,8 +15,8 @@ export const exportToExcel = (jobs) => {
     'Salary Range': job.salary_range,
     'Notes': job.notes,
     'Resume Version': job.resume_version,
-    'Follow Up Date': job.follow_up_date,
-    'Interview Date': job.interview_date
+    'Follow Up Date': job.follow_up_date ? formatDate(job.follow_up_date) : '',
+    'Interview Date': job.interview_date ? formatDateTime(job.interview_date) : ''
   }))
 
   const worksheet = xlsx.utils.json_to_sheet(formattedJobs)

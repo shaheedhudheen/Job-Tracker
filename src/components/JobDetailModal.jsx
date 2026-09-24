@@ -1,6 +1,7 @@
 import React from 'react';
 import { HiXMark, HiLink, HiPencilSquare, HiTrash } from 'react-icons/hi2';
 import { STATUS_OPTIONS } from '../lib/constants.js';
+import { formatDate, formatDateTime } from '../lib/dateUtils.js';
 
 export default function JobDetailModal({ job, isOpen, onClose, onEdit, onDelete }) {
   if (!isOpen || !job) return null;
@@ -59,7 +60,7 @@ export default function JobDetailModal({ job, isOpen, onClose, onEdit, onDelete 
             <div>
               <span className="block text-gray-500 dark:text-gray-400 mb-1">Applied Date</span>
               <span className="font-medium text-gray-900 dark:text-white">
-                {job.applied_date ? new Date(job.applied_date).toLocaleDateString() : 'N/A'}
+                {formatDate(job.applied_date)}
               </span>
             </div>
             <div>
@@ -78,7 +79,7 @@ export default function JobDetailModal({ job, isOpen, onClose, onEdit, onDelete 
               <div>
                 <span className="block text-gray-500 dark:text-gray-400 mb-1">Follow up by</span>
                 <span className="font-medium text-gray-900 dark:text-white">
-                  {new Date(job.follow_up_date).toLocaleDateString()}
+                  {formatDate(job.follow_up_date)}
                 </span>
               </div>
             )}
@@ -86,7 +87,7 @@ export default function JobDetailModal({ job, isOpen, onClose, onEdit, onDelete 
               <div>
                 <span className="block text-gray-500 dark:text-gray-400 mb-1">Interview Date</span>
                 <span className="font-medium text-indigo-600 dark:text-indigo-400">
-                  {new Date(job.interview_date).toLocaleString()}
+                  {formatDateTime(job.interview_date)}
                 </span>
               </div>
             )}

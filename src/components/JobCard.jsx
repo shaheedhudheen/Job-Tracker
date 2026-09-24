@@ -1,6 +1,7 @@
 import React from 'react';
 import { HiMapPin, HiCalendar, HiExclamationCircle } from 'react-icons/hi2';
 import { STATUS_OPTIONS } from '../lib/constants.js';
+import { formatDate } from '../lib/dateUtils.js';
 
 export default function JobCard({ job, onClick }) {
   const statusConfig = STATUS_OPTIONS.find(s => s.value === job.status) || STATUS_OPTIONS[0];
@@ -46,7 +47,7 @@ export default function JobCard({ job, onClick }) {
         
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
           <HiCalendar className="w-4 h-4 mr-1.5 opacity-70" />
-          <span>Applied: {new Date(job.applied_date).toLocaleDateString()}</span>
+          <span>Applied: {formatDate(job.applied_date)}</span>
         </div>
       </div>
 
